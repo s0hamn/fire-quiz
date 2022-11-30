@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button, TextField } from "@mui/material";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from './firebase-config';
+import "./App.css";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreateQuiz from './MyComponents/CreateQuiz'
+import AttemptQuiz from './MyComponents/AttemptQuiz'
+import Home from './MyComponents/Home'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="attemptquiz" element={<AttemptQuiz />} />
+          <Route path="createquiz" element={<CreateQuiz />} />
+        </Routes>
+      </BrowserRouter>
+
+
+
+    </>
+
   );
 }
 
