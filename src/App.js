@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateQuiz from './MyComponents/CreateQuiz'
 import AttemptQuiz from './MyComponents/AttemptQuiz'
 import Home from './MyComponents/Home'
-
+const QuizzesRef = collection(db, "Quizes");
 function App() {
   return (
     <>
@@ -26,5 +26,5 @@ function App() {
 
   );
 }
-
+export { QuizzesRef }
 export default App;

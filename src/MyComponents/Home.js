@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, TextField } from "@mui/material";
 import { Outlet, Link } from "react-router-dom";
+import { addDoc, doc, setDoc } from 'firebase/firestore';
+import { QuizzesRef } from '../App';
+import { db } from '../firebase-config';
 export default function Layout() {
     return (
         <>
