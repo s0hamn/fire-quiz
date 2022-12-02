@@ -14,42 +14,75 @@ export default function Question({ setQuestions, questions }) {
     const [correctOption, setCorrectOption] = useState("");
     const row = {
         display: "flex",
-        margin: "10px 0"
+        margin: "10px 0",
+        justifyContent: "space-between"
+    }
+    const container = {
+        marginTop: "10px 0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column"
     }
 
     const addQuestion = () => {
-        const questionObj = {
-            correctOption: correctOption,
-            optionA: optionA,
-            optionB: optionB,
-            optionC: optionC,
-            optionD: optionD,
-            question: question
+
+
+        if (!(correctOption.trim() == "" || optionA.trim() == "" || optionB.trim() == "" || optionC.trim() == "" || optionD.trim() == "" || question.trim() == "")) {
+
+            const questionObj = {
+                correctOption: correctOption,
+                optionA: optionA,
+                optionB: optionB,
+                optionC: optionC,
+                optionD: optionD,
+                question: question
+            }
+            setQuestions([...questions, questionObj])
+            setOptionA("");
+            setOptionB("");
+            setOptionC("");
+            setOptionD("");
+            setQuestion("");
+            setCorrectOption("")
         }
-        setQuestions([...questions, questionObj])
+        else {
+            alert("Please check the options or questions")
+        }
 
     }
     return (
         <>
-            <div className="container">
+            <div className="container" style={container}>
                 <div className="question">
-                    <TextField value={question} onChange={(e) => { setQuestion(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Question" />
+                    <TextField sx={{
+                        width: { md: 500 }
+                    }} value={question} onChange={(e) => { setQuestion(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Question" />
                 </div>
                 <div className="options">
                     <div className="row" style={row}>
                         <div className="option">
-                            <TextField value={optionA} onChange={(e) => { setOptionA(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option A" />
+                            <TextField
+                                value={optionA} onChange={(e) => { setOptionA(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option A" />
                         </div>
                         <div className="option">
-                            <TextField value={optionB} onChange={(e) => { setOptionB(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option B" />
+                            <TextField
+                                sx={{
+                                    marginLeft: 2
+                                }}
+                                value={optionB} onChange={(e) => { setOptionB(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option B" />
                         </div>
                     </div>
                     <div className="row" style={row}>
                         <div className="option">
-                            <TextField value={optionC} onChange={(e) => { setOptionC(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option C" />
+                            <TextField sx={{
+                                marginRight: 2
+                            }} value={optionC} onChange={(e) => { setOptionC(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option C" />
                         </div>
                         <div className="option">
-                            <TextField value={optionD} onChange={(e) => { setOptionD(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option D" />
+                            <TextField sx={{
+                                marginLeft: 2
+                            }} value={optionD} onChange={(e) => { setOptionD(e.target.value) }} id="demo-helper-text-misaligned-no-helper" label="Option D" />
                         </div>
                     </div>
                 </div>
@@ -70,7 +103,7 @@ export default function Question({ setQuestions, questions }) {
                         <MenuItem value="optionD">Option D</MenuItem>
                     </Select>
                 </FormControl>
-                <Button onClick={addQuestion} variant="contained">Add Question</Button>
+                <Button sx={{ marginTop: 2 }} onClick={addQuestion} variant="contained">Add Question</Button>
 
             </div>
         </>
